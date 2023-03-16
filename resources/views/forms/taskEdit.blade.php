@@ -18,9 +18,9 @@
                             <label for="priority">Selecione uma prioridade para tarefa </label>
                             <select class="form-control select" id="priority" name="priority">
                                 <option value=" ">Selecione uma prioridade</option>
-                                <option value="3" @if ($task->priority == 3) selected @endif>Alta</option>
-                                <option value="2" @if ($task->priority == 2) selected @endif>Média</option>
-                                <option value="1" @if ($task->priority == 1) selected @endif>Baixa</option>
+                                <option value="Alta" @if ($task->priority == 'Alta') selected @endif>Alta</option>
+                                <option value="Media" @if ($task->priority == 'Media') selected @endif>Média</option>
+                                <option value="Baixa" @if ($task->priority == 'Baixa') selected @endif>Baixa</option>
                             </select>
                         </div>
                     </div>

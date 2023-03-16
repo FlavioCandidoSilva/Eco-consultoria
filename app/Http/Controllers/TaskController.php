@@ -24,21 +24,7 @@ class TaskController extends Controller
 
     public function storeTask(Request $request)
     {
-
-
-        $priority = 0;
-
-        switch ($request->input('priority')) {
-            case 'Alta':
-                $priority = 3;
-                break;
-            case 'Media':
-                $priority = 2;
-                break;
-            case 'Baixa':
-                $priority = 1;
-                break;
-        }
+ 
 
         if (!Task::create($request->all())) {
             return redirect()->back()->with('error', 'Algo deu errado!');
