@@ -15,7 +15,7 @@ class Task extends Model implements Auditable
     protected $fillable = [
         'task_name',
         'task_status',
-        'task_description'
+        'priority'
     ];
 
     protected $auditExclude = [

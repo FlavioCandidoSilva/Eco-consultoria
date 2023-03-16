@@ -11,12 +11,12 @@
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
                 Visualização de Tarefas
-                <a class="btn btn-primary float-end" href=" {{route('task.create') }}"><i
-                        class="fa-solid fa-plus"></i> Nova tarefa
+                <a class="btn btn-primary float-end" href=" {{ route('task.create') }}"><i class="fa-solid fa-plus"></i> Nova
+                    tarefa
                 </a>
             </div>
             <div class="card-body">
-                <table id="datatable" class=" table table-striped">
+                <table id="datatable" class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -27,22 +27,25 @@
                             <th>Excluir</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($task as $tasks)
-                            <tr>
-                                <td>{{$tasks->id }}</td>
-                                <td>{{$tasks->task_name ?? '-' }}</td>
-                                <td> {{$tasks->task_status ?? '-' }} </td>
-                                <td> {{\Carbon\Carbon::parse($tasks->created_at)->format('d/m/Y') }}</td>
-                                <td><a class="btn btn-secondary" type="button" href="{{ route('task.edit', $tasks->id) }}"><i
-                                    class="fa-regular fa-pen-to-square"></i> Editar</a></td>
-                                    <td><a class="btn btn-danger" type="button" id="{{route('task.delete', $tasks->id)}}" value="Excluir" data-bs-toggle="modal"
-                                        data-bs-target="#modal-delete"><i class="fa-solid fa-trash"></i> Excluir</a>
-                            </tr>
-                            @include('modal.alertaDeletar')
-
-                        @endforeach
-                    </tbody>
+                    <div>
+                        <tbody>
+                            @foreach ($task as $tasks)
+                                <tr>
+                                    <td>{{ $tasks->id }}</td>
+                                    <td>{{ $tasks->task_name ?? '-' }}</td>
+                                    <td> {{ $tasks->priority ?? '-' }} </td>
+                                    <td> {{ \Carbon\Carbon::parse($tasks->created_at)->format('d/m/Y') }}</td>
+                                    <td><a class="btn btn-secondary" type="button"
+                                            href="{{ route('task.edit', $tasks->id) }}"><i
+                                                class="fa-regular fa-pen-to-square"></i> Editar</a></td>
+                                    <td><a class="btn btn-danger" type="button" id="{{ route('task.delete', $tasks->id) }}"
+                                            value="Excluir" data-bs-toggle="modal" data-bs-target="#modal-delete"><i
+                                                class="fa-solid fa-trash"></i> Excluir</a>
+                                </tr>
+                                @include('modal.alertaDeletar')
+                            @endforeach
+                        </tbody>
+                    </div>
                 </table>
             </div>
         </div>
@@ -50,12 +53,12 @@
 @endsection
 
 @section('script')
+    <script>
+        $('#modal-delete').on('show.bs.modal', function(event) {
+            let value = event.relatedTarget.getAttribute('id');
+            $('#form-modal-delete').attr('action', value);
+        })
 
-<script>
-    $('#modal-delete').on('show.bs.modal', function(event) {
-        let value = event.relatedTarget.getAttribute('id');
-        $('#form-modal-delete').attr('action', value);
-    })
-</script>
-
+        
+    </script>
 @endsection

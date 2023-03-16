@@ -10,7 +10,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        $task = Task::all();
+        $task = Task::orderBy('priority', 'asc')->get();
 
         return view('tasks.task', compact('task'));
     }
@@ -22,14 +22,29 @@ class TaskController extends Controller
         return view('forms.taskForm', compact('task'));
     }
 
-    public function storeTask(Request $request){
+    public function storeTask(Request $request)
+    {
 
-        if(!Task::create($request->all())){
+
+        $priority = 0;
+
+        switch ($request->input('priority')) {
+            case 'Alta':
+                $priority = 3;
+                break;
+            case 'Media':
+                $priority = 2;
+                break;
+            case 'Baixa':
+                $priority = 1;
+                break;
+        }
+
+        if (!Task::create($request->all())) {
             return redirect()->back()->with('error', 'Algo deu errado!');
         }
 
         return redirect()->route('home')->with('success', 'Tarefa cadastrada com sucesso!');
-
     }
 
     public function editTask($id)
@@ -42,7 +57,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
 
-        if(!$task->update($request->all())){
+        if (!$task->update($request->all())) {
             return redirect()->back()->with('error', 'Algo deu errado!');
         }
 
@@ -53,7 +68,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
 
-        if(!$task->delete()){
+        if (!$task->delete()) {
             return redirect()->back()->with('error', 'Algo deu errado!');
         }
 

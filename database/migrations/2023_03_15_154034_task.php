@@ -16,8 +16,8 @@ class Task extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('task_name');
-            $table->enum('task_status', ['Alta', 'Media', 'Baixa']);
-            $table->string('task_description');
+            $table->integer('priority')->default(0)->nullable();
+            $table->string('task_description')->nullable();
             $table->timestamps();
 
         });

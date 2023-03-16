@@ -16,11 +16,11 @@
                         </div>
                         <div class="form-group  col-4">
                             <label for="exampleInput">Selecione uma prioridade para tarefa</label>
-                            <select name="task_status" class="form-control text-center select">
+                            <select name="priority" class="form-control text-center select">
                                 <option value=" ">Selecione uma prioridade</option>
-                                <option value="1">Alta</option>
-                                <option value="2">Média</option>
-                                <option value="3">Baixa</option>
+                                <option value="Alta">Alta</option>
+                                <option value="Media">Média</option>
+                                <option value="Baixa">Baixa</option>
                             </select>
                         </div>
                     </div>
