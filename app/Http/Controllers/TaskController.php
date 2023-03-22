@@ -30,6 +30,8 @@ class TaskController extends Controller
             return redirect()->back()->with('error', 'Algo deu errado!');
         }
 
+        // dd($request->all());
+
         return redirect()->route('home')->with('success', 'Tarefa cadastrada com sucesso!');
     }
 
